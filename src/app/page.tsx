@@ -16,7 +16,7 @@ const VendorSalesChart = () => {
     { name: 'Dim', value: 1300 }
   ];
 
-  const CustomDot = (props) => {
+  const CustomDot = (props: React.ComponentProps<typeof Dot>) => {
     const { cx, cy } = props;
     return (
       <circle
