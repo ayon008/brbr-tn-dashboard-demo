@@ -7,42 +7,53 @@ import {
   Settings,
   User2,
   ChevronUp,
-  Plus,
-  Projector,
-  ChevronDown,
+  Package,
+  ShoppingBag,
+  ClipboardList,
 } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
+  SidebarMenuItem,
   SidebarMenuSubItem,
+  SidebarSeparator,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import Logo from "../Logo/Logo";
+import { play } from "../Fonts/Play";
 
 const items = [
   {
-    title: "Charts",
+    title: "Home",
     url: "/",
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    title: "Products",
+    url: "/products",
+    icon: Package,
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+    title: "Orders",
+    url: "/orders",
+    icon: ShoppingBag,
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    title: "Categories",
+    url: "Category",
+    icon: ClipboardList,
   },
   {
     title: "Settings",
@@ -53,50 +64,28 @@ const items = [
 
 const SideBar = () => {
   return (
-    <Sidebar>
+    <Sidebar collapsible="icon" className="!bg-[#22282E]">
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild className="!h-[60px] hover:bg-[#22282E]">
+              <Logo />
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+      <SidebarSeparator />
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel className={`text-[#9097A7]`}>
+            <span className={`${play.className} uppercase tracking-widest text-xs`}>General</span>
+          </SidebarGroupLabel>
           <SidebarMenu>
             {items.map((item, i) => {
               return (
                 <SidebarMenuSubItem key={i}>
                   <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuSubItem>
-              );
-            })}
-          </SidebarMenu>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarMenu>
-            {items.map((item, i) => {
-              return (
-                <SidebarMenuSubItem key={i}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuSubItem>
-              );
-            })}
-          </SidebarMenu>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarMenu>
-            {items.map((item, i) => {
-              return (
-                <SidebarMenuSubItem key={i}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
+                    <Link href={item.url} className="text-white">
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>
@@ -107,7 +96,24 @@ const SideBar = () => {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter></SidebarFooter>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton className="text-white">
+                  <User2 /> Wassim <ChevronUp className="ml-auto" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem>Accounts</DropdownMenuItem>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem>Sign Out</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 };

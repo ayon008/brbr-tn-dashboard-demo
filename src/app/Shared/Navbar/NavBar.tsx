@@ -13,12 +13,24 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { play } from "../Fonts/Play";
+import { usePathname } from "next/navigation";
 
 const NavBar = () => {
   const { setTheme } = useTheme();
+  const path = usePathname();
+  const pathName = path === "/" ? "WELCOME!" : path.split("/").join("");
   return (
     <div className="p-4 flex items-center justify-between">
-      <div>collapseButton</div>
+      <div className="flex items-center gap-1">
+        <SidebarTrigger />
+        <span
+          className={`${play.className} tracking-widest text-gray-500 uppercase`}
+        >
+          {pathName}
+        </span>
+      </div>
       {/* Right */}
       <div className="flex items-center gap-4">
         <Link href={"/"}>Dashboard</Link>
