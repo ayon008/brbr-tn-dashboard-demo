@@ -17,11 +17,11 @@ export const getAllProducts = async (perPage: number = 12, page: number = 1) => 
         throw new Error(`WooCommerce fetch error: ${response.status}`);
     }
 
-    const data = await response.json();
-
-    // Get total pages & total items from headers
+    // Get total pages & total items from headers (lowercase)
     const total = response.headers.get("x-wp-total");
     const totalPages = response.headers.get("x-wp-totalpages");
+
+    const data = await response.json();
 
     return {
         products: data,
