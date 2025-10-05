@@ -1,10 +1,4 @@
-export const getAllProducts = async ({
-    perPage = 12,
-    page = 1,
-}: {
-    perPage?: number;
-    page?: number;
-} = {}) => {
+export const getAllProducts = async (perPage: number = 12, page: number = 1) => {
     const response = await fetch(
         `${process.env.WOOCOMMERCE_API_URL}/products?per_page=${perPage}&page=${page}`,
         {

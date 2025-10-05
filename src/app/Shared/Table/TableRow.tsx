@@ -21,7 +21,7 @@ const TableRowComponent = ({ data: product }: { data: any }) => {
   return (
     <>
       <TableRow className={`${play.className}`}>
-        <TableCell className="text-xs">{product?.id}</TableCell>
+        <TableCell className="text-xs dark:text-gray-400">{product?.id}</TableCell>
         <TableCell className="">
           <div className="flex items-stretch gap-3">
             {/* Product Image */}
@@ -32,7 +32,7 @@ const TableRowComponent = ({ data: product }: { data: any }) => {
               height={46}
               className="rounded-md w-[46px] object-cover h-[46px]"
             />
-            <div className="flex flex-col justify-between">
+            <div className="flex flex-col justify-between dark:text-gray-400">
               {/* Product name */}
               <p className="text-xs">{result?.name}</p>
 
@@ -56,7 +56,7 @@ const TableRowComponent = ({ data: product }: { data: any }) => {
           </div>
         </TableCell>
         {/* Pricing of Products */}
-        <TableCell className="text-xs">
+        <TableCell className="text-xs dark:text-gray-400">
           {product.sale_price ? (
             <>
               <span className="line-through text-gray-400">
@@ -69,7 +69,7 @@ const TableRowComponent = ({ data: product }: { data: any }) => {
           )}
         </TableCell>
         {/* Stock */}
-        <TableCell className="text-xs space-y-1">
+        <TableCell className="text-xs space-y-1 dark:text-gray-400">
           <p>
             {product.manage_stock
               ? product.stock_quantity > 0
@@ -81,7 +81,7 @@ const TableRowComponent = ({ data: product }: { data: any }) => {
           </p>
           <p>{product.total_sales} sold</p>
         </TableCell>
-        <TableCell className="text-xs">
+        <TableCell className="text-xs dark:text-gray-400">
           {product.categories.map((cat: any, i: number) => (
             <span key={cat.id}>
               {cat.name}
@@ -90,9 +90,9 @@ const TableRowComponent = ({ data: product }: { data: any }) => {
           ))}
         </TableCell>
         {/* Rating */}
-        <TableCell className="text-xs">
+        <TableCell className="text-xs dark:text-gray-400">
           <div className="flex items-center justify-center gap-1">
-            <span className="bg-[#EEF2F7] flex items-center gap-1 w-fit py-1 px-2 rounded-md">
+            <span className="bg-[#EEF2F7] dark:bg-[#2F3943] flex items-center gap-1 w-fit py-1 px-2 rounded-md">
               <Star className="fill-yellow-500 text-yellow-500 w-3 h-3" />
               <p>{product.average_rating}</p>
             </span>
@@ -101,13 +101,22 @@ const TableRowComponent = ({ data: product }: { data: any }) => {
         </TableCell>
         {/* Button */}
         <TableCell className="text-xs space-x-1">
-          <Button className="bg-[#EEF2F7] text-black" variant={"default"}>
+          <Button
+            className="bg-[#EEF2F7] dark:bg-[#2F3943] dark:text-gray-400 text-black cursor-pointer"
+            variant={"default"}
+          >
             <Eye className="h-[1.2rem] w-[1.2rem]" />
           </Button>
-          <Button className="bg-[#FFF0EA] text-[#E6612A] hover:bg-[#E6612A] hover:text-white" variant={"default"}>
+          <Button
+            className="bg-[#FFF0EA] text-[#E6612A] dark:bg-[#3D3435] dark:hover:bg-[#E6612A] cursor-pointer hover:text-white"
+            variant={"default"}
+          >
             <Edit2 className="h-[1.2rem] w-[1.2rem]" />
           </Button>
-          <Button className="bg-[#FFF0EA] text-[#E6612A] hover:bg-[#E6612A] hover:text-white" variant={"default"}>
+          <Button
+            className="bg-[#FFF0EA] text-[#E6612A] dark:bg-[#3D3435]  hover:bg-[#E6612A] dark:hover:bg-[#E6612A] cursor-pointer hover:text-white"
+            variant={"default"}
+          >
             <Trash2 className="h-[1.2rem] w-[1.2rem]" />
           </Button>
         </TableCell>

@@ -7,12 +7,17 @@ import TableHeadComponent from "../Shared/Table/TableHead";
 import { getAllProducts } from "@/lib/getAllProducts";
 import TableRowComponent from "../Shared/Table/TableRow";
 import PaginationButtons from "../Shared/Pagination/Pagination";
+import { SearchParams } from "next/dist/server/request/search-params";
 
-const page = async () => {
-  const { products, totalPages } = await getAllProducts();
+const page = async ({ searchParams }: { searchParams: SearchParams }) => {
+  const { currentPage } = searchParams;
+  const { products, totalPages } = await getAllProducts(
+    12,
+    Number(currentPage)
+  );
   return (
     <div>
-      <div className="bg-white rounded-md">
+      <div className="bg-white dark:bg-[#282F36] rounded-md">
         <div className="flex justify-between items-center p-4">
           <h1 className="font-semibold text-xs">All Products List</h1>
           <div>
@@ -27,7 +32,7 @@ const page = async () => {
         {/* Product Table */}
         <Table className="">
           <TableHeader>
-            <TableRow className="bg-[#FCFCFD] px-4">
+            <TableRow className="bg-[#FCFCFD] dark:bg-[#293038] px-4">
               <TableHeadComponent
                 heads={[
                   "#",
@@ -50,7 +55,10 @@ const page = async () => {
           </TableBody>
         </Table>
         <div className="py-6 border-t-1">
-          <PaginationButtons totalPages={totalPages} />
+          <PaginationButtons
+            totalPages={totalPages}
+            currentPage={Number(currentPage)}
+          />
         </div>
       </div>
     </div>

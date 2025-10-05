@@ -68,7 +68,7 @@ const SideBar = () => {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild className="!h-[60px] hover:bg-[#22282E]">
+            <SidebarMenuButton asChild className="!h-[60px] hover:bg-[#22282E] overflow-hidden">
               <Logo />
             </SidebarMenuButton>
           </SidebarMenuItem>
